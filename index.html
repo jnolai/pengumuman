@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKEW E-GAMES: OPS KAWALAN GAGAK - Pengumuman Pemenang</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Rajdhani & Orbitron untuk tema Gaming/Esports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold-glow: rgba(251, 191, 36, 0.65);
+            --cyan-glow: rgba(56, 189, 248, 0.55);
+            --red-glow: rgba(248, 113, 113, 0.55);
+        }
+
+        bodåy {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #050b18;
+            background-image: 
+                radial-gradient(circle at 50% 12%, rgba(245, 158, 11, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(239, 68, 68, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+                linear-gradient(180deg, #060d1f 0%, #09152e 60%, #040812 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Latar belakang grid perspektif gaming */
+        .cyber-grid {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Tajuk Utama Berkilau Emas & Perak */
+        .title-gold {
+            background: linear-gradient(180deg, #fffbeb 0%, #fbbf24 45%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.5));
+        }
+
+        .title-silver {
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 55%, #64748b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(148, 163, 184, 0.35));
+        }
+
+        /* Animasi kad pemenang */
+        .winner-card {
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .winner-card.locked {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .winner-card.suspense {
+            transform: scale(1.03);
+            border-color: #fbbf24 !important;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.6), inset 0 0 20px rgba(251, 191, 36, 0.3);
+            animation: pulseSuspense 0.25s infinite alternate;
+        }
+
+        @keyframes pulseSuspense {
+            from { transform: scale(1.02) translateX(-2px); }
+            to { transform: scale(1.04) translateX(2px); }
+        }
+
+        .winner-card.revealed {
+            animation: revealPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes revealPop {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.92) rotateX(25deg);
+            }
+            60% {
+                transform: scale(1.04) rotateX(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Gaya Khas Setiap Kedudukan */
+        .rank-1-revealed {
+            background: linear-gradient(135deg, rgba(120, 53, 15, 0.55) 0%, rgba(15, 23, 42, 0.92) 60%, rgba(180, 83, 9, 0.45) 100%);
+            border: 2px solid #fbbf24;
+            box-shadow: 0 0 35px var(--gold-glow), inset 0 0 20px rgba(251, 191, 36, 0.25);
+        }
+
+        .rank-2-revealed {
+            background: linear-gradient(135deg, rgba(14, 116, 144, 0.4) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 24px var(--cyan-glow), inset 0 0 14px rgba(56, 189, 248, 0.15);
+        }
+
+        .rank-3-revealed {
+            background: linear-gradient(135deg, rgba(153, 27, 27, 0.4) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 2px solid #f87171;
+            box-shadow: 0 0 24px var(--red-glow), inset 0 0 14px rgba(248, 113, 113, 0.15);
+        }
+
+        .rank-4-revealed {
+            background: linear-gradient(135deg, rgba(154, 52, 18, 0.35) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 2px solid #fb923c;
+            box-shadow: 0 0 20px rgba(251, 146, 60, 0.4);
+        }
+
+        .rank-5-revealed {
+            background: linear-gradient(135deg, rgba(3, 105, 161, 0.35) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 2px solid #60a5fa;
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+        }
+
+        /* Pingat SVG & Berkilau */
+        .medal-badge {
+            transition: transform 0.5s ease;
+        }
+        .revealed .medal-badge {
+            animation: medalSpin 0.8s ease-out;
+        }
+
+        @keyframes medalSpin {
+            0% { transform: scale(0.5) rotateY(-180deg); }
+            100% { transform: scale(1) rotateY(0deg); }
+        }
+
+        /* Butang Utama Gaming */
+        .btn-gaming {
+            background: linear-gradient(90deg, #f59e0b 0%, #ea580c 50%, #f59e0b 100%);
+            background-size: 200% auto;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.55);
+            transition: all 0.3s ease;
+        }
+        .btn-gaming:hover:not(:disabled) {
+            background-position: right center;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 35px rgba(251, 191, 36, 0.85);
+        }
+        .btn-gaming:active:not(:disabled) {
+            transform: translateY(1px) scale(0.98);
+        }
+        .btn-gaming:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            filter: grayscale(0.4);
+        }
+
+        /* Animasi crosshair berputar perlahan */
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .crosshair-spin {
+            animation: spinSlow 25s linear infinite;
+        }
+
+        /* Kanvas Konfeti */
+        #confetti-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="relative flex flex-col justify-between selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Kanvas Konfeti & Bunga Api -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Latar Belakang Grid & Sasaran (Crosshair) -->
+    <div class="cyber-grid"></div>
+    
+    <!-- Dekorasi Crosshair Sudut -->
+    <svg class="fixed top-20 -left-16 w-48 h-48 text-emerald-500/15 crosshair-spin pointer-events-none hidden sm:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="50" cy="50" r="38" />
+        <circle cx="50" cy="50" r="22" stroke-dasharray="6 4"/>
+        <line x1="50" y1="0" x2="50" y2="100" />
+        <line x1="0" y1="50" x2="100" y2="50" />
+    </svg>
+    <svg class="fixed bottom-24 -right-16 w-56 h-56 text-red-500/15 crosshair-spin pointer-events-none hidden sm:block" style="animation-direction: reverse;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="50" cy="50" r="40" />
+        <circle cx="50" cy="50" r="25" />
+        <line x1="50" y1="0" x2="50" y2="100" />
+        <line x1="0" y1="50" x2="100" y2="50" />
+    </svg>
+
+    <!-- Bar Kawalan Atas (Bunyi & Set Semula) -->
+    <header class="relative z-20 w-full max-w-4xl mx-auto px-4 pt-4 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-wider text-amber-400/90 bg-slate-900/80 border border-amber-500/30 px-3 py-1.5 rounded-full">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>PENTAS AKHIR • LIVE REVEAL</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <!-- Butang Kawalan Bunyi -->
+            <button id="sound-toggle-btn" onclick="toggleSound()" title="Hidupkan / Matikan Bunyi"
+                class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900/85 hover:bg-slate-800 border border-slate-700 text-slate-200 text-sm font-semibold transition cursor-pointer">
+                <svg id="icon-sound-on" class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                </svg>
+                <svg id="icon-sound-off" class="w-5 h-5 text-red-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
+                </svg>
+                <span id="sound-label" class="hidden sm:inline">Bunyi: Aktif</span>
+            </button>
+
+            <!-- Butang Set Semula -->
+            <button id="reset-btn" onclick="resetReveal()" title="Mula Semula Pengumuman"
+                class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900/85 hover:bg-red-950/60 border border-slate-700 hover:border-red-500/50 text-slate-300 hover:text-red-300 text-sm font-semibold transition cursor-pointer">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                <span class="hidden sm:inline">Mula Semula</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Kandungan Utama -->
+    <main class="relative z-10 w-full max-w-3xl mx-auto px-4 py-4 sm:py-6 flex-grow flex flex-col justify-center">
+        
+        <!-- Bahagian Tajuk Acara -->
+        <div class="text-center mb-5 sm:mb-6">
+            <h1 class="font-orbitron text-3xl sm:text-5xl font-black tracking-wider title-gold uppercase leading-tight">
+                JKEW E-GAMES
+            </h1>
+            <h2 class="font-orbitron text-xl sm:text-3xl font-extrabold tracking-widest title-silver uppercase mt-0.5">
+                OPS KAWALAN GAGAK
+            </h2>
+            
+            <!-- Subtajuk dengan Ikon Gamepad -->
+            <div class="mt-3 inline-flex items-center justify-center gap-3 px-5 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/40 shadow-lg">
+                <!-- Ikon Gamepad Kiri -->
+                <svg class="w-6 h-6 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="6" width="20" height="12" rx="4" />
+                    <path d="M6 12h4M8 10v4" />
+                    <circle cx="15" cy="11" r="1" fill="currentColor" />
+                    <circle cx="17" cy="13" r="1" fill="currentColor" />
+                </svg>
+                <span class="font-orbitron text-sm sm:text-lg font-bold tracking-wider text-white">
+                    SENARAI PEMENANG TOP 5
+                </span>
+                <!-- Ikon Gamepad Kanan -->
+                <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="6" width="20" height="12" rx="4" />
+                    <path d="M6 12h4M8 10v4" />
+                    <circle cx="15" cy="11" r="1" fill="currentColor" />
+                    <circle cx="17" cy="13" r="1" fill="currentColor" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Butang Kawalan Pengumuman (Atas Senarai untuk Akses Mudah) -->
+        <div class="mb-6 flex flex-col items-center">
+            <button id="reveal-btn" onclick="triggerNextReveal()" 
+                class="btn-gaming w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-2xl font-orbitron font-extrabold text-base sm:text-lg text-slate-950 tracking-wider uppercase flex items-center justify-center gap-3 cursor-pointer">
+                <svg id="btn-icon" class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                </svg>
+                <span id="reveal-btn-text">UMUMKAN TEMPAT KELIMA</span>
+            </button>
+            <p id="status-hint" class="text-xs sm:text-sm text-slate-400 mt-2 tracking-wide">
+                Tekan butang di atas atau kekunci <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-600 rounded text-amber-300 font-mono">SPACE</kbd> untuk mendedahkan pemenang
+            </p>
+        </div>
+
+        <!-- Senarai Kad Pemenang (Susunan 1 hingga 5 dari atas ke bawah, didedahkan dari 5 ke 1) -->
+        <div id="winners-container" class="space-y-3 sm:space-y-3.5">
+            <!-- Kad akan dijana secara dinamik oleh JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Pengaki (Footer) Penganjur -->
+    <footer class="relative z-10 w-full max-w-3xl mx-auto px-4 pb-4 pt-2">
+        <div class="bg-slate-950/90 border-t-2 border-x border-slate-700/70 rounded-t-2xl px-4 py-3 text-center shadow-2xl">
+            <p class="text-sm sm:text-base font-bold text-amber-400 tracking-wide">
+                Jabatan Kewangan:
+            </p>
+            <p class="text-xs sm:text-sm font-medium text-slate-200 tracking-wide">
+                Anjuran Bahagian Pengurusan Kewangan Dan Perakaunan
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * DATA PEMENANG TOP 5 (Mengikut Poster Rasmi)
+         * Susunan paparan dari atas ke bawah: Tempat 1 hingga Tempat 5
+         * Susunan pendedahan: Dari Tempat 5 naik ke Tempat 1 (suspense)
+         */
+        const WINNERS_DATA = [
+            {
+                rank: 1,
+                title: "Tempat Pertama",
+                name: "Nur Amirah binti Rosli",
+                staffId: "15885",
+                medalColor: "#fbbf24", // Emas
+                medalSecondary: "#b45309",
+                titleClass: "text-amber-400",
+                cardClass: "rank-1-revealed",
+                isGrandChampion: true
+            },
+            {
+                rank: 2,
+                title: "Tempat Kedua",
+                name: "Norizuani Binti Idris",
+                staffId: "21047",
+                medalColor: "#e2e8f0", // Perak
+                medalSecondary: "#64748b",
+                titleClass: "text-slate-200",
+                cardClass: "rank-2-revealed",
+                isGrandChampion: false
+            },
+            {
+                rank: 3,
+                title: "Tempat Ketiga",
+                name: "Nur Maslinda binti Ramli",
+                staffId: "19308",
+                medalColor: "#d97706", // Gangsa
+                medalSecondary: "#78350f",
+                titleClass: "text-amber-500",
+                cardClass: "rank-3-revealed",
+                isGrandChampion: false
+            },
+            {
+                rank: 4,
+                title: "Tempat Keempat",
+                name: "Noor adhlina binti mohd noh @ rahim",
+                staffId: "12556",
+                medalColor: "#f97316", // Jingga Rosette
+                medalSecondary: "#9a3412",
+                titleClass: "text-orange-400",
+                cardClass: "rank-4-revealed",
+                isGrandChampion: false
+            },
+            {
+                rank: 5,
+                title: "Tempat Kelima",
+                name: "Mohd Kamarul Bin Mansor",
+                staffId: "14726",
+                medalColor: "#93c5fd", // Biru Perak Rosette
+                medalSecondary: "#1e40af",
+                titleClass: "text-sky-300",
+                cardClass: "rank-5-revealed",
+                isGrandChampion: false
+            }
+        ];
+
+        // Urutan pendedahan: rank 5 -> rank 4 -> rank 3 -> rank 2 -> rank 1
+        const REVEAL_SEQUENCE = [5, 4, 3, 2, 1];
+        const BUTTON_LABELS = {
+            5: "UMUMKAN TEMPAT KELIMA",
+            4: "UMUMKAN TEMPAT KEEMPAT",
+            3: "UMUMKAN TEMPAT KETIGA",
+            2: "UMUMKAN TEMPAT KEDUA",
+            1: "UMUMKAN JUARA (TEMPAT PERTAMA)!"
+        };
+
+        let currentStep = 0; // Indeks dalam REVEAL_SEQUENCE (0 hingga 4)
+        let isAnimating = false;
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        /**
+         * Inisialisasi Web Audio API untuk kesan bunyi sintesis berkualiti tinggi
+         */
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const iconOn = document.getElementById('icon-sound-on');
+            const iconOff = document.getElementById('icon-sound-off');
+            const label = document.getElementById('sound-label');
+
+            if (soundEnabled) {
+                iconOn.classList.remove('hidden');
+                iconOff.classList.add('hidden');
+                label.textContent = "Bunyi: Aktif";
+                initAudio();
+                playClickSound();
+            } else {
+                iconOn.classList.add('hidden');
+                iconOff.classList.remove('hidden');
+                label.textContent = "Bunyi: Senyap";
+            }
+        }
+
+        /**
+         * Kesan Bunyi 1: Klik UI lembut
+         */
+        function playClickSound() {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(900, audioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.09);
+            } catch (e) { console.warn(e); }
+        }
+
+        /**
+         * Kesan Bunyi 2: Ketegangan / Drumroll & Synth Menaik (Suspense)
+         */
+        function playSuspenseSound(durationSec = 1.3, isGrand = false) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+
+                // 1. Synth Riser (Nada menaik mendebarkan)
+                const riserOsc = audioCtx.createOscillator();
+                const riserGain = audioCtx.createGain();
+                riserOsc.type = 'sawtooth';
+                riserOsc.frequency.setValueAtTime(110, now);
+                riserOsc.frequency.exponentialRampToValueAtTime(isGrand ? 660 : 440, now + durationSec);
+
+                // Penapis lowpass supaya bunyi lebih hangat dan sinematik
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(300, now);
+                filter.frequency.exponentialRampToValueAtTime(2400, now + durationSec);
+
+                riserGain.gain.setValueAtTime(0.02, now);
+                riserGain.gain.linearRampToValueAtTime(0.22, now + durationSec * 0.85);
+                riserGain.gain.linearRampToValueAtTime(0.001, now + durationSec);
+
+                riserOsc.connect(filter);
+                filter.connect(riserGain);
+                riserGain.connect(audioCtx.destination);
+                riserOsc.start(now);
+                riserOsc.stop(now + durationSec);
+
+                // 2. Ketukan Drumroll Pantas (Snare / Timpani pulse)
+                const hits = isGrand ? 22 : 16;
+                for (let i = 0; i < hits; i++) {
+                    const hitTime = now + (i / hits) * durationSec;
+                    const drumOsc = audioCtx.createOscillator();
+                    const drumGain = audioCtx.createGain();
+                    drumOsc.type = 'triangle';
+                    drumOsc.frequency.setValueAtTime(140 + (i * 5), hitTime);
+                    drumOsc.frequency.exponentialRampToValueAtTime(55, hitTime + 0.06);
+
+                    const vol = 0.08 + (i / hits) * 0.18;
+                    drumGain.gain.setValueAtTime(vol, hitTime);
+                    drumGain.gain.exponentialRampToValueAtTime(0.001, hitTime + 0.07);
+
+                    drumOsc.connect(drumGain);
+                    drumGain.connect(audioCtx.destination);
+                    drumOsc.start(hitTime);
+                    drumOsc.stop(hitTime + 0.075);
+                }
+            } catch (e) { console.warn(e); }
+        }
+
+        /**
+         * Kesan Bunyi 3: Fanfare Kemenangan Epik (Trumpet / Synth Brass & Sparkle Chime)
+         */
+        function playFanfareSound(isGrandChampion = false) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+
+                // Nota kord kemenangan (C Major / F Major fanfare)
+                const notes = isGrandChampion 
+                    ? [
+                        { freq: 523.25, time: 0.0, dur: 0.18 },   // C5
+                        { freq: 659.25, time: 0.14, dur: 0.18 },  // E5
+                        { freq: 783.99, time: 0.28, dur: 0.18 },  // G5
+                        { freq: 1046.50, time: 0.44, dur: 1.1 },  // C6 (Tahan lama)
+                        { freq: 659.25, time: 0.44, dur: 1.1 },   // Harmoni E5
+                        { freq: 783.99, time: 0.44, dur: 1.1 },   // Harmoni G5
+                        { freq: 1318.51, time: 0.65, dur: 0.9 }   // E6 Kilauan
+                      ]
+                    : [
+                        { freq: 440.00, time: 0.0, dur: 0.15 },   // A4
+                        { freq: 554.37, time: 0.12, dur: 0.15 },  // C#5
+                        { freq: 659.25, time: 0.24, dur: 0.15 },  // E5
+                        { freq: 880.00, time: 0.38, dur: 0.75 },  // A5
+                        { freq: 554.37, time: 0.38, dur: 0.75 }   // Harmoni C#5
+                      ];
+
+                notes.forEach(n => {
+                    // Lapisan 1: Brass / Sawtooth hangat
+                    const osc1 = audioCtx.createOscillator();
+                    const gain1 = audioCtx.createGain();
+                    const filter = audioCtx.createBiquadFilter();
+
+                    osc1.type = 'sawtooth';
+                    osc1.frequency.setValueAtTime(n.freq, now + n.time);
+
+                    filter.type = 'lowpass';
+                    filter.frequency.setValueAtTime(2800, now + n.time);
+
+                    gain1.gain.setValueAtTime(0.001, now + n.time);
+                    gain1.gain.linearRampToValueAtTime(isGrandChampion ? 0.18 : 0.14, now + n.time + 0.03);
+                    gain1.gain.exponentialRampToValueAtTime(0.001, now + n.time + n.dur);
+
+                    osc1.connect(filter);
+                    filter.connect(gain1);
+                    gain1.connect(audioCtx.destination);
+
+                    osc1.start(now + n.time);
+                    osc1.stop(now + n.time + n.dur + 0.05);
+
+                    // Lapisan 2: Loceng Chime berkilau (Sine)
+                    const osc2 = audioCtx.createOscillator();
+                    const gain2 = audioCtx.createGain();
+                    osc2.type = 'sine';
+                    osc2.frequency.setValueAtTime(n.freq * 2, now + n.time);
+
+                    gain2.gain.setValueAtTime(0.001, now + n.time);
+                    gain2.gain.linearRampToValueAtTime(0.1, now + n.time + 0.02);
+                    gain2.gain.exponentialRampToValueAtTime(0.001, now + n.time + n.dur * 0.85);
+
+                    osc2.connect(gain2);
+                    gain2.connect(audioCtx.destination);
+                    osc2.start(now + n.time);
+                    osc2.stop(now + n.time + n.dur + 0.05);
+                });
+
+                // Sub-bass impact pada saat pendedahan
+                const bassOsc = audioCtx.createOscillator();
+                const bassGain = audioCtx.createGain();
+                bassOsc.type = 'sine';
+                bassOsc.frequency.setValueAtTime(120, now);
+                bassOsc.frequency.exponentialRampToValueAtTime(38, now + 0.5);
+                bassGain.gain.setValueAtTime(0.35, now);
+                bassGain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+                bassOsc.connect(bassGain);
+                bassGain.connect(audioCtx.destination);
+                bassOsc.start(now);
+                bassOsc.stop(now + 0.6);
+
+            } catch (e) { console.warn(e); }
+        }
+
+        /**
+         * Menjana SVG Pingat mengikut kedudukan (1-3 pingat beriben, 4-5 lencana rosette)
+         */
+        function getMedalSVG(winner, isRevealed) {
+            const color = isRevealed ? winner.medalColor : '#475569';
+            const secondary = isRevealed ? winner.medalSecondary : '#1e293b';
+            const numberText = winner.rank;
+
+            if (winner.rank <= 3) {
+                return `
+                <svg class="w-14 h-16 sm:w-16 sm:h-18 drop-shadow-lg" viewBox="0 0 64 76" fill="none">
+                    <!-- Riben Merah -->
+                    <path d="M18 44L12 70L24 63L30 72L32 48" fill="${isRevealed ? '#dc2626' : '#334155'}" />
+                    <path d="M46 44L52 70L40 63L34 72L32 48" fill="${isRevealed ? '#991b1b' : '#1e293b'}" />
+                    <!-- Gelung Atas -->
+                    <rect x="25" y="4" width="14" height="8" rx="2" stroke="${color}" stroke-width="3" />
+                    <!-- Badan Pingat -->
+                    <circle cx="32" cy="32" r="22" fill="url(#grad-${winner.rank}-${isRevealed})" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5"/>
+                    <circle cx="32" cy="32" r="17" stroke="${secondary}" stroke-width="1.5" stroke-opacity="0.6"/>
+                    <defs>
+                        <linearGradient id="grad-${winner.rank}-${isRevealed}" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="${color}" />
+                            <stop offset="1" stop-color="${secondary}" />
+                        </linearGradient>
+                    </defs>
+                    <text x="32" y="40" text-anchor="middle" fill="#ffffff" font-family="Orbitron, sans-serif" font-weight="900" font-size="22" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">${numberText}</text>
+                </svg>`;
+            } else {
+                // Lencana Rosette untuk Tempat ke-4 dan ke-5
+                return `
+                <svg class="w-14 h-16 sm:w-16 sm:h-18 drop-shadow-lg" viewBox="0 0 64 76" fill="none">
+                    <!-- Ekor Riben -->
+                    <path d="M22 46L16 68L26 62L31 70L32 50" fill="${isRevealed ? secondary : '#334155'}" />
+                    <path d="M42 46L48 68L38 62L33 70L32 50" fill="${isRevealed ? color : '#1e293b'}" />
+                    <!-- Bentuk Rosette Bergigi -->
+                    <polygon points="32,6 38,11 46,10 49,17 56,21 54,29 58,36 52,42 52,50 44,51 39,57 32,54 25,57 20,51 12,50 12,42 6,36 10,29 8,21 15,17 18,10 26,11" 
+                        fill="url(#grad-${winner.rank}-${isRevealed})" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.5"/>
+                    <circle cx="32" cy="32" r="16" fill="${secondary}" fill-opacity="0.45" stroke="#ffffff" stroke-opacity="0.3"/>
+                    <defs>
+                        <linearGradient id="grad-${winner.rank}-${isRevealed}" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="${color}" />
+                            <stop offset="1" stop-color="${secondary}" />
+                        </linearGradient>
+                    </defs>
+                    <text x="32" y="40" text-anchor="middle" fill="#ffffff" font-family="Orbitron, sans-serif" font-weight="900" font-size="21" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">${numberText}</text>
+                </svg>`;
+            }
+        }
+
+        /**
+         * Papar senarai kad pemenang ke dalam DOM
+         */
+        function renderBoard() {
+            const container = document.getElementById('winners-container');
+            container.innerHTML = '';
+
+            WINNERS_DATA.forEach(winner => {
+                const isFirst = winner.rank === 1;
+                const card = document.createElement('div');
+                card.id = `winner-card-${winner.rank}`;
+                card.className = `winner-card locked relative flex items-center gap-3 sm:gap-5 px-4 sm:px-6 ${isFirst ? 'py-3.5 sm:py-4' : 'py-2.5 sm:py-3'} rounded-2xl overflow-hidden`;
+
+                card.innerHTML = `
+                    <!-- Ikon Pingat -->
+                    <div id="medal-${winner.rank}" class="medal-badge flex-shrink-0">
+                        ${getMedalSVG(winner, false)}
+                    </div>
+
+                    <!-- Maklumat Pemenang -->
+                    <div class="flex-grow min-w-0">
+                        <div class="flex items-center gap-2">
+                            <span id="rank-title-${winner.rank}" class="font-orbitron text-sm sm:text-lg font-bold tracking-wider uppercase text-slate-400">
+                                ${winner.title}
+                            </span>
+                            <span id="badge-${winner.rank}" class="hidden text-[10px] sm:text-xs font-orbitron font-bold px-2 py-0.5 rounded bg-amber-400 text-slate-950 uppercase tracking-wider">
+                                JUARA
+                            </span>
+                        </div>
+                        
+                        <!-- Nama & No. Pekerja (Tersembunyi pada awalnya) -->
+                        <div id="winner-info-${winner.rank}" class="mt-0.5 flex items-center gap-2">
+                            <span class="font-orbitron text-base sm:text-xl font-bold tracking-widest text-slate-500 select-none">
+                                • • • • • • • • • • • •
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Status Kunci / Ikon -->
+                    <div id="status-icon-${winner.rank}" class="flex-shrink-0 text-slate-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            updateControlButton();
+        }
+
+        /**
+         * Kemas kini teks & status butang utama
+         */
+        function updateControlButton() {
+            const btn = document.getElementById('reveal-btn');
+            const btnText = document.getElementById('reveal-btn-text');
+            const hint = document.getElementById('status-hint');
+
+            if (currentStep >= REVEAL_SEQUENCE.length) {
+                btnText.textContent = "TAHNIAH KEPADA SEMUA PEMENANG!";
+                btn.disabled = true;
+                btn.classList.remove('btn-gaming');
+                btn.classList.add('bg-emerald-600', 'text-white', 'shadow-lg');
+                hint.innerHTML = `Semua 5 pemenang telah diumumkan. Klik <strong class="text-amber-400">Mula Semula</strong> untuk mengulang.`;
+            } else {
+                const nextRank = REVEAL_SEQUENCE[currentStep];
+                btnText.textContent = BUTTON_LABELS[nextRank];
+                btn.disabled = false;
+                btn.classList.add('btn-gaming');
+                btn.classList.remove('bg-emerald-600', 'text-white');
+                hint.innerHTML = `Tekan butang di atas atau kekunci <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-600 rounded text-amber-300 font-mono">SPACE</kbd> untuk mendedahkan pemenang (${currentStep + 1}/5)`;
+            }
+        }
+
+        /**
+         * Proses utama apabila butang ditekan untuk mendedahkan pemenang seterusnya
+         */
+        function triggerNextReveal() {
+            if (isAnimating || currentStep >= REVEAL_SEQUENCE.length) return;
+
+            isAnimating = true;
+            const targetRank = REVEAL_SEQUENCE[currentStep];
+            const winner = WINNERS_DATA.find(w => w.rank === targetRank);
+            const card = document.getElementById(`winner-card-${targetRank}`);
+            const infoBox = document.getElementById(`winner-info-${targetRank}`);
+            const btn = document.getElementById('reveal-btn');
+            const btnText = document.getElementById('reveal-btn-text');
+
+            btn.disabled = true;
+            btnText.textContent = "MENDAPATKAN KEPUTUSAN...";
+
+            // Fasa 1: Ketegangan (Suspense)
+            const suspenseDuration = winner.isGrandChampion ? 1800 : 1200;
+            card.classList.add('suspense');
+            infoBox.innerHTML = `<span class="font-orbitron text-sm sm:text-lg font-bold text-amber-400 animate-pulse tracking-widest">SEDANG MENGIRA MATA...</span>`;
+            
+            playSuspenseSound(suspenseDuration / 1000, winner.isGrandChampion);
+
+            // Fasa 2: Pendedahan Pemenang
+            setTimeout(() => {
+                card.classList.remove('suspense', 'locked');
+                card.classList.add('revealed', winner.cardClass);
+
+                // Kemas kini pingat berwarna penuh
+                document.getElementById(`medal-${targetRank}`).innerHTML = getMedalSVG(winner, true);
+
+                // Kemas kini warna tajuk kedudukan
+                const rankTitleEl = document.getElementById(`rank-title-${targetRank}`);
+                rankTitleEl.className = `font-orbitron text-base sm:text-xl font-extrabold tracking-wide ${winner.titleClass}`;
+
+                if (winner.isGrandChampion) {
+                    document.getElementById(`badge-${targetRank}`).classList.remove('hidden');
+                }
+
+                // Paparkan Nama Penuh & No. Pekerja
+                infoBox.innerHTML = `
+                    <p class="text-lg sm:text-2xl font-bold text-white tracking-wide leading-snug break-words">
+                        ${winner.name} <span class="text-amber-300 font-orbitron text-base sm:text-xl font-extrabold">(${winner.staffId})</span>
+                    </p>
+                `;
+
+                // Tukar ikon kunci kepada bintang kemenangan
+                document.getElementById(`status-icon-${targetRank}`).innerHTML = `
+                    <svg class="w-7 h-7 ${winner.isGrandChampion ? 'text-amber-400 animate-spin' : 'text-emerald-400'}" style="animation-duration: 6s;" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                `;
+
+                // Mainkan bunyi fanfare & lancarkan konfeti
+                playFanfareSound(winner.isGrandChampion);
+                launchConfetti(winner.isGrandChampion ? 180 : 75);
+
+                if (winner.isGrandChampion) {
+                    // Bunga api berganda untuk Tempat Pertama
+                    setTimeout(() => launchConfetti(140), 500);
+                    setTimeout(() => launchConfetti(140), 1000);
+                }
+
+                currentStep++;
+                isAnimating = false;
+                updateControlButton();
+            }, suspenseDuration);
+        }
+
+        /**
+         * Set semula papan pemenang dari awal
+         */
+        function resetReveal() {
+            if (isAnimating) return;
+            playClickSound();
+            currentStep = 0;
+            particles = [];
+            renderBoard();
+        }
+
+        /**
+         * Sokongan kekunci papan kekunci (Spacebar / Enter) untuk pengacara majlis
+         */
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'Enter') {
+                // Elak skrol halaman jika space ditekan
+                if (document.activeElement.tagName !== 'BUTTON') {
+                    e.preventDefault();
+                    triggerNextReveal();
+                }
+            }
+        });
+
+        /**
+         * SISTEM KONFETI & PARTIKEL BERKILAU (HTML5 Canvas)
+         */
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function launchConfetti(count = 80) {
+            const colors = ['#fbbf24', '#f59e0b', '#38bdf8', '#f87171', '#34d399', '#ffffff'];
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: canvas.width * (0.2 + Math.random() * 0.6),
+                    y: canvas.height * 0.45,
+                    vx: (Math.random() - 0.5) * 18,
+                    vy: (Math.random() - 1.15) * 16,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rotSpeed: (Math.random() - 0.5) * 12,
+                    gravity: 0.35,
+                    alpha: 1
+                });
+            }
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.vx *= 0.98;
+                p.rotation += p.rotSpeed;
+                p.alpha -= 0.008;
+
+                if (p.alpha <= 0 || p.y > canvas.height + 20) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+                ctx.restore();
+            }
+
+            requestAnimationFrame(animateConfetti);
+        }
+
+        // Mulakan paparan & gelung animasi apabila halaman siap dimuatkan
+        window.onload = function () {
+            renderBoard();
+            animateConfetti();
+        };
+    </script>
+</body>
+</html>
